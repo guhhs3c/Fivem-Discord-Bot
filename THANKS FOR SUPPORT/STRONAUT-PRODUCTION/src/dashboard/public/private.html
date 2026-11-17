@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STRONAUT // FANBASE ARMORY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#07090c;
+  --panel:#0d1117;
+  --panel2:#111820;
+  --line:#202a35;
+  --text:#e8edf2;
+  --muted:#7f8b98;
+  --green:#43d17a;
+  --amber:#ffb52e;
+  --red:#ff4e5f;
+  --purple:#a879ff;
+  --cyan:#38ddff;
+  --yellow:#ffd34d;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+body{
+  background:
+    radial-gradient(900px 500px at 50% -15%,rgba(67,209,122,.07),transparent 65%),
+    var(--bg);
+  color:var(--text);
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.025;
+  background:repeating-linear-gradient(0deg,#fff 0 1px,transparent 1px 3px);
+  z-index:20;
+}
+
+a{color:inherit}
+.wrap{width:min(1160px,calc(100% - 40px));margin:auto}
+
+header{
+  position:sticky;
+  top:0;
+  z-index:30;
+  background:rgba(7,9,12,.92);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+}
+
+nav{
+  height:68px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.brand{
+  font:700 19px "Space Grotesk",sans-serif;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.brand i{
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:var(--green);
+  box-shadow:0 0 0 5px rgba(67,209,122,.12);
+}
+
+.nav-right{
+  display:flex;
+  gap:18px;
+  align-items:center;
+  font:12px "JetBrains Mono",monospace;
+  color:var(--muted);
+}
+
+.nav-right a{
+  text-decoration:none;
+}
+
+.nav-right a:hover{
+  color:var(--text);
+}
+
+.status{color:var(--green)}
+
+.hero{
+  padding:72px 0 48px;
+  border-bottom:1px solid var(--line);
+}
+
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:40px;
+  align-items:center;
+}
+
+.kicker{
+  font:11px "JetBrains Mono",monospace;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--green);
+}
+
+h1{
+  font:700 clamp(38px,6vw,70px) "Space Grotesk",sans-serif;
+  line-height:.96;
+  margin:13px 0 18px;
+}
+
+h1 span{color:var(--amber)}
+
+.hero p{
+  max-width:650px;
+  color:var(--muted);
+  line-height:1.7;
+  font-size:14px;
+}
+
+.notice{
+  margin-top:22px;
+  padding:13px 15px;
+  border:1px solid rgba(255,181,46,.25);
+  background:rgba(255,181,46,.05);
+  border-radius:8px;
+  color:#c5ccd3;
+  font:11.5px/1.7 "JetBrains Mono",monospace;
+}
+
+.console{
+  background:#05070a;
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:20px;
+  font:12px/1.8 "JetBrains Mono",monospace;
+  box-shadow:0 15px 50px rgba(0,0,0,.3);
+}
+
+.console .g{color:var(--green)}
+.console .a{color:var(--amber)}
+.console .c{color:var(--cyan)}
+.console .m{color:var(--muted)}
+
+.shop{
+  padding:48px 0 90px;
+}
+
+.toolbar{
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  align-items:end;
+  margin-bottom:22px;
+}
+
+.toolbar h2{
+  font:700 28px "Space Grotesk",sans-serif;
+}
+
+.toolbar p{
+  color:var(--muted);
+  font-size:13px;
+  margin-top:5px;
+}
+
+.filters{
+  display:flex;
+  gap:7px;
+  flex-wrap:wrap;
+}
+
+.filter{
+  border:1px solid var(--line);
+  background:var(--panel);
+  color:var(--muted);
+  padding:8px 11px;
+  border-radius:6px;
+  font:11px "JetBrains Mono",monospace;
+  cursor:pointer;
+}
+
+.filter.active,
+.filter:hover{
+  color:var(--text);
+  border-color:var(--green);
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
+
+.card{
+  background:linear-gradient(180deg,var(--panel2),var(--panel));
+  border:1px solid var(--line);
+  border-radius:10px;
+  overflow:hidden;
+  transition:.18s;
+}
+
+.card:hover{
+  transform:translateY(-3px);
+  border-color:#334252;
+}
+
+.card-top{
+  height:190px;
+  background:linear-gradient(135deg,#121a22,#080b0f);
+  position:relative;
+  overflow:hidden;
+  border-bottom:1px solid var(--line);
+}
+
+.weapon-image{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  transition:transform .35s ease;
+}
+
+.card:hover .weapon-image{
+  transform:scale(1.05);
+}
+
+.lock{
+  position:absolute;
+  right:10px;
+  top:10px;
+  z-index:2;
+  font:10px "JetBrains Mono",monospace;
+  padding:5px 7px;
+  border-radius:4px;
+  background:rgba(7,9,12,.88);
+  border:1px solid var(--line);
+  color:var(--muted);
+  backdrop-filter:blur(4px);
+}
+
+.card-body{
+  padding:17px;
+}
+
+.tag{
+  font:10px "JetBrains Mono",monospace;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  color:var(--cyan);
+}
+
+.card h3{
+  font:600 18px "Space Grotesk",sans-serif;
+  margin:6px 0;
+}
+
+.card p{
+  font-size:12.5px;
+  color:var(--muted);
+  line-height:1.6;
+  min-height:40px;
+}
+
+.meta{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-top:15px;
+  padding-top:13px;
+  border-top:1px solid var(--line);
+}
+
+.price{
+  font:600 13px "JetBrains Mono",monospace;
+  color:var(--amber);
+}
+
+.fake-btn{
+  border:1px solid rgba(67,209,122,.35);
+  padding:8px 11px;
+  border-radius:5px;
+  font:700 10px "JetBrains Mono",monospace;
+  color:var(--green);
+  text-decoration:none;
+  transition:.15s;
+}
+
+.fake-btn:hover{
+  background:rgba(67,209,122,.1);
+  color:var(--text);
+  border-color:var(--green);
+}
+
+.codes{
+  margin-top:55px;
+}
+
+.codes h2{
+  font:700 25px "Space Grotesk",sans-serif;
+  margin-bottom:8px;
+}
+
+.codes > p{
+  font-size:13px;
+  color:var(--muted);
+  margin-bottom:18px;
+}
+
+.code-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+
+.code{
+  padding:18px;
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:9px;
+}
+
+.code b{
+  display:block;
+  font:700 12px "JetBrains Mono",monospace;
+  margin-bottom:8px;
+}
+
+.code p{
+  font-size:11.5px;
+  color:var(--muted);
+  line-height:1.6;
+}
+
+.red b{color:var(--red)}
+.purple b{color:var(--purple)}
+.yellow b{color:var(--yellow)}
+.green b{color:var(--green)}
+
+footer{
+  border-top:1px solid var(--line);
+  padding:35px 0 50px;
+  color:var(--muted);
+  font:11px/1.7 "JetBrains Mono",monospace;
+}
+
+.legal{
+  display:flex;
+  gap:14px;
+  margin-top:12px;
+}
+
+.legal a{
+  text-decoration:none;
+}
+
+.legal a:hover{
+  color:var(--text);
+}
+
+@media(max-width:850px){
+  .hero-grid{grid-template-columns:1fr}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .code-grid{grid-template-columns:repeat(2,1fr)}
+}
+
+@media(max-width:560px){
+  .wrap{width:min(100% - 28px,1160px)}
+  .nav-right{display:none}
+  .grid,.code-grid{grid-template-columns:1fr}
+  .toolbar{align-items:start;flex-direction:column}
+  .meta{align-items:flex-start;flex-direction:column}
+  .fake-btn{width:100%;text-align:center}
+}
+
+/* LOGIN */
+#site{
+  display:none;
+}
+
+#site.unlocked{
+  display:block;
+}
+
+.login-screen{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:
+    radial-gradient(
+      700px 400px at 50% 35%,
+      rgba(67,209,122,.08),
+      transparent 65%
+    ),
+    #05070a;
+}
+
+.login-box{
+  width:min(430px,100%);
+  padding:30px;
+  background:rgba(13,17,23,.97);
+  border:1px solid var(--line);
+  border-radius:12px;
+  box-shadow:0 25px 90px rgba(0,0,0,.65);
+}
+
+.login-logo{
+  text-align:center;
+  margin-bottom:25px;
+}
+
+.login-dot{
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  background:var(--green);
+  margin:0 auto 14px;
+  box-shadow:
+    0 0 0 7px rgba(67,209,122,.1),
+    0 0 25px rgba(67,209,122,.3);
+}
+
+.login-logo h2{
+  font:700 25px "Space Grotesk",sans-serif;
+}
+
+.login-logo p{
+  margin-top:7px;
+  color:var(--muted);
+  font:10px "JetBrains Mono",monospace;
+  letter-spacing:.1em;
+}
+
+.login-label{
+  display:block;
+  margin-bottom:7px;
+  color:var(--muted);
+  font:10px "JetBrains Mono",monospace;
+  text-transform:uppercase;
+}
+
+.login-input{
+  width:100%;
+  padding:13px 14px;
+  background:#07090c;
+  color:var(--text);
+  border:1px solid var(--line);
+  border-radius:7px;
+  outline:none;
+  font:12px "JetBrains Mono",monospace;
+}
+
+.login-input:focus{
+  border-color:var(--green);
+  box-shadow:0 0 0 3px rgba(67,209,122,.08);
+}
+
+.login-btn{
+  width:100%;
+  margin-top:12px;
+  padding:13px;
+  border:0;
+  border-radius:7px;
+  cursor:pointer;
+  background:var(--green);
+  color:#061008;
+  font:700 11px "JetBrains Mono",monospace;
+}
+
+.login-btn:hover{
+  filter:brightness(1.08);
+}
+
+.login-error{
+  display:none;
+  margin-top:10px;
+  color:var(--red);
+  font:10px/1.5 "JetBrains Mono",monospace;
+}
+
+.login-error.show{
+  display:block;
+}
+
+.login-info{
+  margin-top:18px;
+  padding:11px 12px;
+  border:1px solid rgba(255,181,46,.2);
+  background:rgba(255,181,46,.04);
+  border-radius:7px;
+  color:var(--muted);
+  font:10px/1.6 "JetBrains Mono",monospace;
+}
+
+.logout{
+  border:1px solid var(--line);
+  padding:6px 9px;
+  border-radius:5px;
+  background:transparent;
+  color:var(--muted);
+  cursor:pointer;
+  font:10px "JetBrains Mono",monospace;
+}
+
+.logout:hover{
+  color:var(--red);
+  border-color:var(--red);
+}
+
+</style>
+<link rel="stylesheet" href="/fx-base.css">
+<link rel="stylesheet" href="/fx-private.css">
+<script src="/fx.js" defer></script>
+</head>
+<body>
+
+<div class="login-screen" id="loginScreen">
+  <div class="login-box">
+    <div class="login-logo">
+      <div class="login-dot"></div>
+      <h2>STRONAUT // DARK SIDE</h2>
+      <p>PRIVATE FANBASE CATALOG</p>
+    </div>
+
+    <form id="loginForm">
+      <label class="login-label" for="accessCode">Access Code</label>
+      <input id="accessCode" class="login-input" type="password"
+             placeholder="Masukkan access code..." autocomplete="off" required>
+      <button class="login-btn" type="submit">AUTHENTICATE →</button>
+      <div class="login-error" id="loginError">
+        ACCESS DENIED — Access code tidak valid.
+      </div>
+    </form>
+
+    <div class="login-info">
+      ⚠ FYI JANGAN MENYEBARKAN CODE ACCESS.
+    </div>
+  </div>
+</div>
+
+<div id="site">
+
+  <script>
+const ACCESS_CODES = [
+  "ADMIN2026",
+  "YELLOW2026",
+  "GREEN2026",
+  "PURPLE2026"
+];
+
+const loginScreen = document.getElementById("loginScreen");
+const site = document.getElementById("site");
+const loginForm = document.getElementById("loginForm");
+const accessCode = document.getElementById("accessCode");
+const loginError = document.getElementById("loginError");
+
+function unlockSite(){
+  loginScreen.style.display = "none";
+  site.classList.add("unlocked");
+}
+
+loginForm.addEventListener("submit", function(e){
+  e.preventDefault();
+
+  if(ACCESS_CODES.includes(accessCode.value)){
+    sessionStorage.setItem("stronaut_authenticated","true");
+    loginError.classList.remove("show");
+    unlockSite();
+  }else{
+    loginError.classList.add("show");
+    accessCode.value = "";
+    accessCode.focus();
+  }
+});
+</script>
+
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="brand">
+      <i></i>
+      STRONAUT // DARK SIDE
+    </div>
+
+    <div class="nav-right">
+      <span class="status">● STAND BY</span>
+      <a href="#catalog">Catalog</a>
+      <a href="#codes">Access Codes</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+
+    <div>
+      <div class="kicker">
+        STRONAUT / PRIVATE CATALOG
+      </div>
+
+      <h1>
+        DARK SIDE <span>FIVEM</span>
+      </h1>
+
+      <p>
+        Etalase Items di bawah bagian ucapan terimaksi kepada user semua.
+        Semua nama, item, gambar mungkin sebagian kami re share dari internet.
+      </p>
+
+      <div class="notice">
+        ⚠ FYI — Segala tindakan semua tannggung jawab pengguna ,jauh dari tanggung jawab kami,jadi fikir sebelum bertindak.
+      </div>
+    </div>
+
+    <div class="console">
+      <div class="g">● SECURE CHANNEL READY</div>
+      <div class="m">&gt; identity: <span class="c">STRONAUT_MEMBER</span></div>
+      <div class="m">&gt; market: <span class="a">HAMA X PAPI MAMI RP</span></div>
+      <div class="m">&gt; currency: <span class="c">STAR CREDITS</span></div>
+      <div class="g">&gt; status: catalog synchronized</div>
+      <div class="m">&gt; reality_check: <span class="a">HAMA / RP ONLY</span></div>
+    </div>
+
+  </div>
+</section>
+
+
+<section class="shop" id="catalog">
+
+<div class="wrap">
+
+  <div class="toolbar">
+
+    <div>
+      <h2>Catalog</h2>
+      <p>Item FREE.</p>
+    </div>
+
+    <div class="filters">
+      <button class="filter active" data-filter="all">ALL</button>
+      <button class="filter" data-filter="sidearm">CHEATS</button>
+      <button class="filter" data-filter="energy">CITIZEN</button>
+      <button class="filter" data-filter="heavy">MODS</button>
+    </div>
+
+  </div>
+
+
+  <div class="grid">
+
+    <!-- PRODUK 1 -->
+    <article class="card" data-cat="sidearm">
+
+      <div class="card-top">
+        <img
+          src="https://media.discordapp.net/attachments/1486394921954050108/1494706743694065787/image.png?ex=6a94e762&is=6a9395e2&hm=7a6e71496831f73f150405d9287c7fce3166504adcdb9e8e427feb77b81ee6c2&=&format=webp&quality=lossless"
+          alt="KX CHEATS"
+          class="weapon-image"
+          loading="lazy"
+        >
+        <div class="lock">FREE</div>
+      </div>
+
+      <div class="card-body">
+        <span class="tag">FIVEM CHEATS MENU</span>
+        <h3>KX CHEATS</h3>
+        <p>Cheat for fivem.</p>
+
+        <div class="meta">
+          <span class="price">blocked</span>
+
+          <!-- GANTI LINK PESAN DI BAWAH -->
+          <a
+            class="fake-btn order-product"
+            href=https://gofile.io/d/vB1XUz"
+            target="_blank"
+            rel="noopener"
+          >
+            ACCESS
+          </a>
+        </div>
+      </div>
+
+    </article>
+
+
+    <!-- PRODUK 2 -->
+    <article class="card" data-cat="energy">
+
+      <div class="card-top">
+        <img
+          src="https://media.discordapp.net/attachments/1247404980512493651/1523831949838254241/Screenshot_2026-07-07_061715.png?ex=6a94bb98&is=6a936a18&hm=2ec2a60f8e4c304db7355ee87cb7ce8b10b4ac1de6d6b49f015d8fcb5cf64780&=&format=webp&quality=lossless"
+          alt="Nova Blaster X"
+          class="weapon-image"
+          loading="lazy"
+        >
+        <div class="lock">FREE</div>
+      </div>
+
+      <div class="card-body">
+        <span class="tag">CITIZEN FIVEM</span>
+        <h3>CITIZEN RINGAN PATEM</h3>
+        <p>Cocok untuk Pvp,BW, dan aktivitas kompe lainnya.</p>
+
+        <div class="meta">
+          <span class="price">Available</span>
+
+          <a
+            class="fake-btn order-product"
+            href="https://drive.google.com/drive/folders/1VB3DRb2Sjxzn3gD8Eouvx6HXzRnfysR1?usp=sharin"
+            target="_blank"
+            rel="noopener"
+          >
+            ACCESS
+          </a>
+        </div>
+      </div>
+
+    </article>
+
+
+    <!-- PRODUK 3 -->
+    <article class="card" data-cat="heavy">
+
+      <div class="card-top">
+        <img
+          src="https://media.discordapp.net/attachments/1484924661979549706/1541077080434016387/1785774553468-b6a11dd6-cf1b-4555-992b-9cb66f40a4aa-image.png?ex=6a94d91f&is=6a93879f&hm=ceb2625be766a151db7802c2efee7ff60d9614d2c82a1ba6a53efa20962c9c67&=&format=webp&quality=lossless"
+          alt="Atlas Pulse Cannon"
+          class="weapon-image"
+          loading="lazy"
+        >
+        <div class="lock">FREE</div>
+      </div>
+
+      <div class="card-body">
+        <span class="tag">MODS</span>
+        <h3>LUMEIRE GOLD ROADS</h3>
+        <p>MODS ROADS FOR FIVEM.</p>
+
+        <div class="meta">
+          <span class="price">Available</span>
+
+          <a
+            class="fake-btn order-product"
+            href="https://drive.google.com/file/d/1W1nmUF6vzaiTeUOCrulPUWLH7U6e2sgj/view"
+            target="_blank"
+            rel="noopener"
+          >
+            ACCESS
+          </a>
+        </div>
+      </div>
+
+    </article>
+
+
+    <!-- PRODUK 4 -->
+    <article class="card" data-cat="energy">
+
+      <div class="card-top">
+        <img
+          src="https://media.discordapp.net/attachments/1510694573851017326/1513460338673324163/image-15.png?ex=6a949307&is=6a934187&hm=d2058b3f65b565af441532d8b1aeec33a082929c64575e4872c04586bd9bd708&=&format=webp&quality=lossless"
+          alt="Arc Carbine 22"
+          class="weapon-image"
+          loading="lazy"
+        >
+        <div class="lock">FREE</div>
+      </div>
+
+      <div class="card-body">
+        <span class="tag">CITIZEN FIVEM</span>
+        <h3>V9 K1NGS REALISTIC</h3>
+        <p>Realistic version of the V9 K1NGS citizen FIVEM.</p>
+
+        <div class="meta">
+          <span class="price">Available</span>
+
+          <a
+            class="fake-btn order-product"
+            href="https://link-unlock.com/j04mqhtj"
+            target="_blank"
+            rel="noopener"
+          >
+            ACCESS
+          </a>
+        </div>
+      </div>
+
+    </article>
+
+
+    <!-- PRODUK 5 -->
+    <article class="card" data-cat="sidearm">
+
+      <div class="card-top">
+        <img
+          src="https://cdn.discordapp.com/attachments/1486394921954050108/1495097119307202863/72D51999-6BA6-4786-9EB0-56854CEB33F7.png?ex=6a950172&is=6a93aff2&hm=dcc567531103d7cdb5f9ee09c464c9d4f382f291d31a90aa41af22995d3870db&"
+          alt="Comet Handgun"
+          class="weapon-image"
+          loading="lazy"
+        >
+        <div class="lock">FREE</div>
+      </div>
+
+      <div class="card-body">
+        <span class="tag">FIVEM CHEATS MENU</span>
+        <h3>CHEAT EXE 606</h3>
+        <p>Cheat for fivem.</p>
+
+        <div class="meta">
+          <span class="price">Available</span>
+
+          <a
+            class="fake-btn order-product"
+            href="https://bt-fivem-extranel-v2.netlify.app/"
+            target="_blank"
+            rel="noopener"
+          >
+            ACCESS
+          </a>
+        </div>
+      </div>
+
+    </article>
+
+
+    <!-- PRODUK 6 -->
+    <article class="card" data-cat="heavy">
+
+      <div class="card-top">
+        <img
+          src="https://media.discordapp.net/attachments/1481188541718331433/1490310002001449120/Screenshot_52.png?ex=6a94ba99&is=6a936919&hm=615fe486e3e73d6e2c74276ae1083ebcef73294ac68bc7b6b87b011bfd11f4fc&=&format=webp&quality=lossless&width=1536&height=864"
+          alt="Orbit Defender"
+          class="weapon-image"
+          loading="lazy"
+        >
+        <div class="lock">FREE</div>
+      </div>
+
+      <div class="card-body">
+        <span class="tag">MODS</span>
+        <h3>PREMIUM ROADS V2.2 KALI STORE</h3>
+        <p>Mods Road for fivem.</p>
+
+        <div class="meta">
+          <span class="price">Available</span>
+
+          <a
+            class="fake-btn order-product"
+            href="https://drive.google.com/file/d/1DgTI7DOcWeHMl69CYlXNzZkjoEVUSfR7/view?usp=sharing"
+            target="_blank"
+            rel="noopener"
+          >
+            ACCESS
+          </a>
+        </div>
+      </div>
+
+    </article>
+
+  </div>
+
+
+  <div class="codes" id="codes">
+
+    <h2>Access Codes</h2>
+
+    <p>
+      Sistem code color. code hanya menentukan akses.
+    </p>
+
+    <div class="code-grid">
+
+      <div class="code red">
+        <b>RED // COMBAT</b>
+        <p>Akses katalog item.</p>
+      </div>
+
+      <div class="code purple">
+        <b>PURPLE // PARTNER</b>
+        <p>Akses items dan termasuk partners.</p>
+      </div>
+
+      <div class="code yellow">
+        <b>YELLOW // SUPPORT</b>
+        <p>Akses Fitur Premium dan items.</p>
+      </div>
+
+      <div class="code green">
+        <b>GREEN // OPERATOR</b>
+        <p>Bagian dari Admin dan Team.</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+<div class="wrap">
+
+<strong>STRONAUT</strong><br>
+
+Semua produk di halaman ini adalah <b>SHARING</b>.
+Tidak ada penjualan, pembelian, pengiriman, atau penyediaan.
+
+<div class="legal">
+  <a href="https://discord.gg/3pNdSNEvS3">Lebih banyak items</a>
+  <a href="https://discord.com/oauth2/authorize?client_id=992716787483418697">Stronaut bot</a>
+</div>
+
+</div>
+
+</footer>
+
+
+<script>
+
+document.querySelectorAll('.filter').forEach(button => {
+
+  button.addEventListener('click', () => {
+
+    document.querySelectorAll('.filter').forEach(btn => {
+      btn.classList.remove('active');
+    });
+
+    button.classList.add('active');
+
+    const filter = button.dataset.filter;
+
+    document.querySelectorAll('.card').forEach(card => {
+
+      if (
+        filter === 'all' ||
+        card.dataset.cat === filter
+      ) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+
+    });
+
+  });
+
+});

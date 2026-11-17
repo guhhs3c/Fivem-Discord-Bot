@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>STRONAUT — Discord Bot</title>
+<meta name="description" content="STRONAUT Discord Bot — FiveM tools, monitoring, music and gaming utilities.">
+<style>
+:root{--bg:#070914;--card:rgba(17,22,42,.72);--line:rgba(255,255,255,.09);--text:#f7f8ff;--muted:#9da5bd;--p:#7c6cff;--p2:#4cc9ff;--ok:#54e39b}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;color:var(--text);background:radial-gradient(circle at 80% -10%,#2d2168 0,transparent 35%),radial-gradient(circle at 0 30%,#102c52 0,transparent 30%),var(--bg);min-height:100vh;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(to bottom,black,transparent 80%);pointer-events:none}
+.container{width:min(1120px,calc(100% - 40px));margin:auto}.nav{height:78px;display:flex;align-items:center;justify-content:space-between;position:relative;z-index:2}.brand{display:flex;gap:12px;align-items:center;font-weight:800;letter-spacing:.5px}.logo{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,var(--p),var(--p2));box-shadow:0 10px 35px #6f5cff55;font-size:21px}.navlinks{display:flex;gap:10px;align-items:center}.navlinks a{color:var(--muted);text-decoration:none;padding:10px 13px;border-radius:10px}.navlinks a:hover{color:var(--text);background:#ffffff09}.invite{background:linear-gradient(135deg,#5865f2,#7c6cff);color:#fff!important;box-shadow:0 10px 28px #5865f244}.server-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.server-card{background:var(--card);border:1px solid var(--line);border-radius:19px;overflow:hidden;backdrop-filter:blur(16px);transition:.2s}.server-card:hover{transform:translateY(-4px);border-color:#8278ff55}.server-banner{height:105px;background:linear-gradient(135deg,#151b32,#0c1020);overflow:hidden}.server-banner img{width:100%;height:100%;object-fit:cover}.server-body{padding:18px}.server-top{display:flex;justify-content:space-between;gap:10px;align-items:center}.server-name{font-weight:800;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.online{color:var(--ok)}.offline{color:#ff667c}.server-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.server-chip{font-size:12px;color:var(--muted);background:#0004;border:1px solid var(--line);padding:6px 8px;border-radius:8px}.server-open{margin-top:14px;width:100%;justify-content:center}.server-empty{text-align:center;color:var(--muted);padding:28px;border:1px dashed var(--line);border-radius:18px;grid-column:1/-1}@media(max-width:760px){.server-grid{grid-template-columns:1fr}}.admin{border:1px solid var(--line)!important;background:#ffffff08;color:#fff!important}
+.hero{padding:92px 0 70px;text-align:center;position:relative}.pill{display:inline-flex;align-items:center;gap:8px;border:1px solid #8b7dff44;background:#8b7dff12;padding:8px 13px;border-radius:999px;color:#c8c2ff;font-size:13px}.dot{width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 16px var(--ok)}
+h1{font-size:clamp(44px,8vw,82px);line-height:.98;letter-spacing:-4px;margin:22px auto 20px;max-width:900px}.grad{background:linear-gradient(90deg,#fff 10%,#aaa0ff 48%,#6fdcff);-webkit-background-clip:text;color:transparent}.hero p{max-width:680px;margin:auto;color:var(--muted);font-size:18px;line-height:1.7}.actions{margin-top:30px;display:flex;justify-content:center;gap:12px;flex-wrap:wrap}.btn{display:inline-flex;text-decoration:none;border-radius:13px;padding:13px 18px;font-weight:700}.primary{background:linear-gradient(135deg,var(--p),#5f8dff);color:#fff;box-shadow:0 14px 40px #6259ff38}.secondary{background:#ffffff09;border:1px solid var(--line);color:#fff}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:15px 0 80px}.stat{background:var(--card);border:1px solid var(--line);padding:20px;border-radius:18px;backdrop-filter:blur(16px)}.stat b{font-size:26px}.stat span{display:block;color:var(--muted);font-size:13px;margin-top:5px}
+.section{padding:20px 0 75px}.sectionhead{display:flex;justify-content:space-between;align-items:end;margin-bottom:22px}.sectionhead h2{font-size:30px}.sectionhead p{color:var(--muted);margin-top:5px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.card{background:var(--card);border:1px solid var(--line);border-radius:19px;padding:22px;backdrop-filter:blur(16px);transition:.2s}.card:hover{transform:translateY(-4px);border-color:#8278ff55}.icon{font-size:25px;margin-bottom:16px}.card h3{font-size:17px}.card p{color:var(--muted);font-size:14px;line-height:1.6;margin:7px 0 14px}.cmds{display:flex;flex-wrap:wrap;gap:7px}.cmd{font:600 12px ui-monospace,SFMono-Regular,monospace;background:#0004;border:1px solid var(--line);padding:6px 8px;border-radius:8px;color:#d9d5ff}
+.commandbox{background:linear-gradient(135deg,#11162aee,#0c1020ee);border:1px solid var(--line);border-radius:22px;padding:25px;display:grid;grid-template-columns:1fr 1fr;gap:12px}.command{display:flex;gap:12px;padding:13px;border:1px solid var(--line);border-radius:13px;background:#ffffff04}.command code{color:#bdb5ff;font-weight:700}.command small{color:var(--muted)}
+.cta{padding:28px;border:1px solid #8176ff33;border-radius:24px;background:linear-gradient(135deg,#6d5cff14,#4cc9ff0a);display:flex;justify-content:space-between;align-items:center;gap:20px}.cta p{color:var(--muted);margin-top:5px}footer{border-top:1px solid var(--line);padding:25px 0;color:var(--muted);font-size:13px;display:flex;justify-content:space-between}
+@media(max-width:760px){.navlinks a:not(.admin){display:none}.hero{padding-top:65px}.stats,.grid,.commandbox{grid-template-columns:1fr}.cta{flex-direction:column;align-items:flex-start}h1{letter-spacing:-2px}}
+</style>
+<link rel="stylesheet" href="/fx-base.css">
+<link rel="stylesheet" href="/fx-index.css">
+<link rel="stylesheet" href="/astro.css">
+</head>
+<body>
+<div class="container">
+<header class="nav">
+<a class="brand" href="/private.html"><span class="logo">🚀</span><span>STRONAUT</span></a>
+<nav class="navlinks"><a href="#features">Fitur</a><a href="#servers">Servers</a><a href="#commands">Commands</a><a href="/premium.html">💎 Premium</a><a id="inviteTop" class="invite" href="#" target="_blank" rel="noopener">🤖 Invite Bot</a><a class="admin" href="/admin.html">🔐 Admin</a></nav>
+</header>
+<main>
+<section class="hero">
+<div class="planet" aria-hidden="true"></div>
+<div class="astro" aria-hidden="true">
+<svg viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="suit" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#c9cff0"/></linearGradient>
+<linearGradient id="visor" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4cc9ff"/><stop offset=".55" stop-color="#5b4bd6"/><stop offset="1" stop-color="#1b1450"/></linearGradient>
+</defs>
+<path class="tether" d="M60 150 C10 190 -30 140 -60 200" fill="none" stroke="#b7b0ff" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+<rect x="52" y="104" width="96" height="92" rx="34" fill="#9aa3d6"/>
+<g class="leg-l"><rect x="68" y="176" width="26" height="62" rx="13" fill="url(#suit)"/><rect x="64" y="224" width="34" height="20" rx="9" fill="#7c6cff"/></g>
+<g class="leg-r"><rect x="106" y="176" width="26" height="62" rx="13" fill="url(#suit)"/><rect x="102" y="224" width="34" height="20" rx="9" fill="#7c6cff"/></g>
+<rect x="62" y="98" width="76" height="92" rx="30" fill="url(#suit)"/>
+<rect x="80" y="126" width="40" height="28" rx="8" fill="#e3e6fa"/><circle cx="91" cy="140" r="4" fill="#54e39b"/><circle cx="104" cy="140" r="4" fill="#ff667c"/><rect x="112" y="136" width="5" height="8" rx="2" fill="#7c6cff"/>
+<g class="arm-r"><rect x="128" y="108" width="24" height="58" rx="12" fill="url(#suit)" transform="rotate(-14 140 112)"/><circle cx="152" cy="168" r="12" fill="#7c6cff"/></g>
+<g class="arm-l"><rect x="48" y="104" width="24" height="58" rx="12" fill="url(#suit)" transform="rotate(34 60 112)"/><circle cx="36" cy="160" r="12" fill="#7c6cff"/></g>
+<circle cx="100" cy="64" r="50" fill="url(#suit)"/>
+<ellipse cx="100" cy="66" rx="38" ry="32" fill="url(#visor)"/>
+<path class="glint" d="M76 52 Q88 42 104 46" stroke="#fff" stroke-width="6" stroke-linecap="round" fill="none"/>
+<ellipse cx="116" cy="82" rx="9" ry="4" fill="#fff" opacity=".18"/>
+<rect x="92" y="10" width="16" height="8" rx="4" fill="#7c6cff"/><rect x="99" y="2" width="2" height="10" fill="#b7b0ff"/><circle cx="100" cy="2" r="4" fill="#ff5ca8"/>
+</svg></div>
+<div class="pill"><span class="dot"></span> Discord Bot • FiveM • Gaming</div>
+<h1>One bot for your <span class="grad">entire server.</span></h1>
+<p>STRONAUT membantu mengelola server Discord, memantau FiveM secara real-time, melihat player, menjalankan monitoring, dan menyediakan berbagai utility gaming dalam satu bot.</p>
+<div class="actions"><a id="inviteHero" class="btn primary" href="#" target="_blank" rel="noopener">🤖 Invite STRONAUT</a><a class="btn secondary" href="/premium.html">💎 Beli Premium</a><a class="btn secondary" href="#commands">Lihat Commands ↓</a><a class="btn secondary" href="/admin.html">🔐 Admin Dashboard</a></div>
+</section>
+<div class="stats"><div class="stat"><b id="status">Checking...</b><span>Status bot</span></div><div class="stat"><b id="guilds">—</b><span>Discord servers</span></div><div class="stat"><b id="version">—</b><span>Current version</span></div></div>
+<section id="features" class="section"><div class="sectionhead"><div><h2>Fitur utama</h2><p>Tools yang dibuat untuk komunitas gaming.</p></div></div>
+<div class="grid">
+<div class="card"><div class="icon">🎮</div><h3>FiveM Tools</h3><p>Cek status server, daftar server, player online, dan pencarian CFX.</p><div class="cmds"><span class="cmd">!server</span><span class="cmd">!players</span><span class="cmd">!cfxfinder</span></div></div>
+<div class="card"><div class="icon">📡</div><h3>Monitoring</h3><p>Monitor player dan status server secara otomatis melalui Discord.</p><div class="cmds"><span class="cmd">!setmonitor</span><span class="cmd">!loop</span><span class="cmd">!stopmonitor</span></div></div>
+<div class="card"><div class="icon">🛠️</div><h3>Gaming Utilities</h3><p>Berbagai utility untuk SAMP, Minecraft, Steam, geo lookup, dan lainnya.</p><div class="cmds"><span class="cmd">!samp</span><span class="cmd">!minecraft</span><span class="cmd">!steam</span></div></div>
+</div></section>
+<section id="servers" class="section"><div class="sectionhead"><div><h2>Server dalam database</h2><p>Server aktif yang tersimpan di database STRONAUT, dengan status FiveM live.</p></div></div><div id="serverGrid" class="server-grid"><div class="server-empty">Memuat server...</div></div></section><section id="commands" class="section"><div class="sectionhead"><div><h2>Command bot</h2><p>Gunakan prefix <b>!</b> di Discord.</p></div></div>
+<div class="commandbox">
+<div class="command"><code>!help</code><small>Menampilkan bantuan command.</small></div><div class="command"><code>!ping</code><small>Cek latency bot & WebSocket.</small></div>
+<div class="command"><code>!server</code><small>Cek informasi server FiveM.</small></div><div class="command"><code>!serverlist</code><small>Melihat server FiveM yang tersedia.</small></div>
+<div class="command"><code>!players</code><small>Melihat player server.</small></div><div class="command"><code>!cfxfinder</code><small>Mencari server berdasarkan CFX.</small></div>
+<div class="command"><code>!setmonitor</code><small>Memasang live monitor server.</small></div><div class="command"><code>!setserver</code><small>Mengatur server utama.</small></div>
+<div class="command"><code>!subscribe</code><small>Informasi subscription.</small></div><div class="command"><code>!ceklangganan</code><small>Cek status langganan.</small></div>
+<div class="command"><code>!requestserver</code><small>Mengirim request server.</small></div><div class="command"><code>!support</code><small>Informasi support.</small></div>
+</div></section>
+<section class="section"><div class="cta"><div><h2>💎 STRONAUT Premium</h2><p>Upgrade server kamu langsung dari website — bayar via QRIS, aktif otomatis.</p></div><a class="btn primary" href="/premium.html">💎 Beli Premium</a></div></section>
+<section class="section"><div class="cta"><div><h2>Admin STRONAUT</h2><p>Kelola server, request, monitor, loop, dan statistik bot dari dashboard.</p></div><a class="btn primary" href="/admin.html">🔐 Buka Dashboard</a></div></section>
+</main>
+<footer><span>© <span id="year"></span> STRONAUT</span><span>Discord Bot • v<span id="footerVersion">—</span></span></footer>
+</div>
+<script>
+document.getElementById('year').textContent=new Date().getFullYear();
+const escapeHtml = (v) => String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+fetch('/api/public/status').then(r=>r.json()).then(d=>{
+ document.getElementById('status').textContent=d.status==='online'?'🟢 Online':'🔴 Offline';
+ document.getElementById('guilds').textContent=(d.guilds??0).toLocaleString();
+ document.getElementById('version').textContent='v'+(d.version||'—');
+ document.getElementById('footerVersion').textContent=d.version||'—';
+ const invite=d.inviteUrl||'#';
+ document.getElementById('inviteTop').href=invite;
+ document.getElementById('inviteHero').href=invite;
+}).catch(()=>document.getElementById('status').textContent='⚪ Unknown');
+
+fetch('/api/public/servers').then(r=>r.json()).then(servers=>{
+ const grid=document.getElementById('serverGrid');
+ if(!Array.isArray(servers)||!servers.length){grid.innerHTML='<div class="server-empty">Belum ada server aktif di database.</div>';return}
+ grid.innerHTML=servers.map(s=>{
+   const online=s.status==='online';
+   const banner=s.banner_url ? `<img src="${escapeHtml(s.banner_url)}" alt="" loading="lazy" onerror="this.style.display='none'">` : '';
+   const players=s.players!=null ? `${s.players}${s.maxPlayers!=null?' / '+s.maxPlayers:''} players` : 'Players —';
+   return `<article class="server-card"><div class="server-banner">${banner}</div><div class="server-body"><div class="server-top"><div class="server-name">${escapeHtml(s.name)}</div><strong class="${online?'online':'offline'}">${online?'● Online':'● Offline'}</strong></div><div class="server-meta"><span class="server-chip">👥 ${escapeHtml(players)}</span><span class="server-chip">📡 ${s.ping!=null?escapeHtml(s.ping)+' ms':'—'}</span></div><span class="btn secondary server-open" aria-label="Server online">🎮 Server Info</span></div></article>`;
+ }).join('');
+}).catch(()=>document.getElementById('serverGrid').innerHTML='<div class="server-empty">Gagal memuat server database.</div>');
+</script>
+<div class="stars" id="stars" aria-hidden="true"></div>
+<script>(function(){var c=document.getElementById("stars");for(var i=0;i<70;i++){var e=document.createElement("i");e.style.cssText="left:"+Math.random()*100+"%;top:"+Math.random()*100+"%;animation-delay:"+(Math.random()*3).toFixed(2)+"s;animation-duration:"+(2+Math.random()*3).toFixed(2)+"s";c.appendChild(e)}})()</script>
+<script src="/music.js" defer></script>
+<script src="/fx.js" defer></script>
+</body></html>

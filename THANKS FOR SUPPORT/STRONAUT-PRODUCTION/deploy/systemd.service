@@ -1,0 +1,20 @@
+[Unit]
+Description=STRONAUT Discord Bot
+After=network.target
+
+[Service]
+Type=simple
+User=stronaut
+WorkingDirectory=/var/www/stronaut
+Environment=NODE_ENV=production
+ExecStart=/usr/bin/node /var/www/stronaut/src/index.js
+Restart=always
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+ReadWritePaths=/var/www/stronaut
+
+[Install]
+WantedBy=multi-user.target

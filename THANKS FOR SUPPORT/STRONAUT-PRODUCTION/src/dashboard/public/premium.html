@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>STRONAUT Premium — Beli Premium</title>
+<meta name="description" content="Beli STRONAUT Premium untuk server Discord kamu. Bayar mudah via QRIS, aktif otomatis.">
+<style>
+:root{--bg:#070914;--card:rgba(17,22,42,.72);--line:rgba(255,255,255,.09);--text:#f7f8ff;--muted:#9da5bd;--p:#7c6cff;--p2:#4cc9ff;--ok:#54e39b;--warn:#ffcf5c;--bad:#ff667c}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;color:var(--text);background:radial-gradient(circle at 80% -10%,#2d2168 0,transparent 35%),radial-gradient(circle at 0 30%,#102c52 0,transparent 30%),var(--bg);min-height:100vh;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(to bottom,black,transparent 80%);pointer-events:none}
+.container{width:min(1000px,calc(100% - 40px));margin:auto}
+.nav{height:78px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;gap:12px;align-items:center;font-weight:800;letter-spacing:.5px;color:var(--text);text-decoration:none}
+.logo{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,var(--p),var(--p2));box-shadow:0 10px 35px #6f5cff55;font-size:21px}
+.back{color:var(--muted);text-decoration:none;padding:10px 14px;border-radius:10px;border:1px solid var(--line);background:#ffffff08;transition:.25s}.back:hover{color:#fff;transform:translateX(-3px)}
+.head{text-align:center;padding:44px 0 34px}
+.pill{display:inline-flex;gap:8px;align-items:center;border:1px solid #ffcf5c44;background:#ffcf5c12;padding:8px 14px;border-radius:999px;color:#ffe29a;font-size:13px}
+h1{font-size:clamp(34px,6vw,58px);letter-spacing:-2px;line-height:1.05;margin:18px 0 12px}
+.grad{background:linear-gradient(90deg,#fff,#aaa0ff,#6fdcff,#ff8bd0,#fff);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:fxtext 8s linear infinite}@keyframes fxtext{to{background-position:300% 0}}
+.head p{color:var(--muted);max-width:560px;margin:auto;line-height:1.7}
+.steps{display:flex;justify-content:center;gap:8px;margin:0 0 26px;flex-wrap:wrap}
+.step{display:flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;border:1px solid var(--line);color:var(--muted);font-size:13px;background:#ffffff06;transition:.3s}
+.step b{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:#ffffff12;font-size:12px}
+.step.on{color:#fff;border-color:#8b7dff77;background:#7c6cff1f;box-shadow:0 0 28px -8px #7c6cff}.step.on b{background:linear-gradient(135deg,var(--p),var(--p2))}
+.step.done b{background:var(--ok);color:#052}
+.panel{display:none}.panel.on{display:block;animation:fxin .5s cubic-bezier(.2,.7,.2,1)}@keyframes fxin{from{opacity:0;transform:translateY(18px)}}
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.plan{position:relative;text-align:left;cursor:pointer;color:inherit;font:inherit;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:26px;backdrop-filter:blur(16px);transition:transform .35s cubic-bezier(.2,.7,.2,1),border-color .3s,box-shadow .35s}
+.plan:hover{transform:translateY(-8px);border-color:#8278ff88;box-shadow:0 25px 60px -20px #6f5cff77}
+.plan.sel{border-color:var(--p);box-shadow:0 0 0 2px #7c6cff66,0 25px 60px -20px #6f5cffaa}
+.plan .tag{position:absolute;top:-12px;right:18px;background:linear-gradient(135deg,#ffcf5c,#ff9d5c);color:#2a1700;font-size:12px;font-weight:800;padding:5px 12px;border-radius:999px;box-shadow:0 8px 22px -6px #ff9d5c}
+.plan h3{font-size:16px;color:#d9d5ff}
+.plan .price{font-size:36px;font-weight:800;letter-spacing:-1px;margin:12px 0 4px;background:linear-gradient(90deg,#fff,#b7b0ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.plan .per{color:var(--muted);font-size:13px}
+.plan ul{list-style:none;margin-top:16px;display:grid;gap:8px;font-size:14px;color:#cfd3e8}.plan li:before{content:"✓ ";color:var(--ok);font-weight:800}
+.box{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:26px;backdrop-filter:blur(16px);max-width:620px;margin:0 auto}
+label{display:block;font-size:13px;color:var(--muted);margin:14px 0 7px}
+input{width:100%;background:#0006;border:1px solid var(--line);border-radius:13px;padding:14px 15px;color:#fff;font:inherit;outline:none;transition:.25s}
+input:focus{border-color:var(--p);box-shadow:0 0 0 4px #7c6cff2a}
+.hint{font-size:12px;color:var(--muted);margin-top:7px;line-height:1.5}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;cursor:pointer;font:inherit;font-weight:700;border-radius:13px;padding:14px 20px;color:#fff;text-decoration:none;transition:transform .25s,box-shadow .25s,opacity .2s;position:relative;overflow:hidden}
+.btn.primary{background:linear-gradient(135deg,var(--p),#5f8dff);box-shadow:0 14px 40px #6259ff38}.btn.primary:hover{transform:translateY(-3px);box-shadow:0 18px 50px #6f5cff77}
+.btn.ghost{background:#ffffff09;border:1px solid var(--line)}.btn.ghost:hover{background:#ffffff16}
+.btn[disabled]{opacity:.5;pointer-events:none}
+.row{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}.row .btn{flex:1}
+.guild{display:flex;align-items:center;gap:14px;margin-top:14px;padding:14px;border-radius:16px;border:1px solid #54e39b44;background:#54e39b10;animation:fxin .4s}
+.guild img,.guild .av{width:52px;height:52px;border-radius:14px;object-fit:cover;background:linear-gradient(135deg,var(--p),var(--p2));display:grid;place-items:center;font-size:22px}
+.guild small{color:var(--muted);display:block;margin-top:3px}
+.msg{margin-top:12px;font-size:14px;padding:11px 14px;border-radius:12px;display:none}.msg.err{display:block;color:#ffb3be;background:#ff667c14;border:1px solid #ff667c44}.msg.warn{display:block;color:#ffe29a;background:#ffcf5c12;border:1px solid #ffcf5c44}
+.sum{display:grid;gap:9px;margin:4px 0 6px;font-size:14px}.sum div{display:flex;justify-content:space-between;gap:12px;color:var(--muted)}.sum b{color:#fff;text-align:right}
+.sum .tot{border-top:1px dashed var(--line);padding-top:12px;font-size:16px}.sum .tot b{font-size:20px;color:#ffe29a}
+.qrwrap{text-align:center}
+.qr{margin-top:20px;display:inline-block;background:#fff;border-radius:22px;padding:14px;position:relative;box-shadow:0 20px 60px -15px #6f5cffaa;animation:fxin .6s}
+.qr img{display:block;width:min(300px,70vw);height:auto;border-radius:10px}
+.qr:after{content:"";position:absolute;left:14px;right:14px;height:3px;border-radius:3px;background:linear-gradient(90deg,transparent,#7c6cff,transparent);box-shadow:0 0 18px #7c6cff;top:14px;animation:scan 2.4s ease-in-out infinite}
+@keyframes scan{0%,100%{top:14px}50%{top:calc(100% - 17px)}}
+.total{font-size:30px;font-weight:800;margin:18px 0 4px;letter-spacing:-1px}
+.timer{color:var(--warn);font-weight:700;font-variant-numeric:tabular-nums}
+.wait{display:inline-flex;gap:9px;align-items:center;color:var(--muted);font-size:14px;margin-top:10px}
+.spin{width:16px;height:16px;border:2px solid #ffffff22;border-top-color:var(--p2);border-radius:50%;animation:sp .7s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}
+.ok{text-align:center;padding:12px 0}
+.check{width:92px;height:92px;margin:0 auto 18px;border-radius:50%;display:grid;place-items:center;font-size:44px;background:radial-gradient(circle,#54e39b33,#54e39b0d);border:2px solid var(--ok);box-shadow:0 0 60px #54e39b66;animation:pop .7s cubic-bezier(.2,1.4,.3,1)}@keyframes pop{from{transform:scale(0) rotate(-90deg)}}
+.ok h2{font-size:28px;margin-bottom:8px}.ok p{color:var(--muted);line-height:1.7}
+.confetti{position:fixed;top:-12px;width:9px;height:14px;z-index:99;pointer-events:none;animation:fall linear forwards}@keyframes fall{to{transform:translateY(105vh) rotate(720deg);opacity:.9}}
+.off{max-width:620px;margin:0 auto;text-align:center;padding:30px;border:1px dashed var(--line);border-radius:20px;color:var(--muted)}
+.feat{max-width:1000px;margin:34px auto 0;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:24px 26px;backdrop-filter:blur(16px)}
+.feat h3{font-size:16px;color:#d9d5ff;margin-bottom:14px}
+.feat ul{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px 22px;font-size:14px;color:#cfd3e8}
+.feat li:before{content:"✓ ";color:var(--ok);font-weight:800}
+.feat code{font:600 12px ui-monospace,SFMono-Regular,monospace;background:#0005;border:1px solid var(--line);padding:2px 6px;border-radius:6px;color:#d9d5ff;margin-right:4px}
+.redeem{max-width:620px;margin:22px auto 0;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:6px 22px;backdrop-filter:blur(16px)}
+.redeem summary{cursor:pointer;padding:16px 0;font-weight:700;color:#d9d5ff;list-style:none}
+.redeem summary::-webkit-details-marker{display:none}
+.redeem[open] summary{border-bottom:1px dashed var(--line);margin-bottom:6px}
+.redeem .msg.ok{display:block;color:#a8f3cc;background:#54e39b14;border:1px solid #54e39b44}
+.redeem .row{margin-bottom:18px}
+footer{border-top:1px solid var(--line);margin-top:70px;padding:24px 0;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+</style>
+<link rel="stylesheet" href="/fx-base.css">
+<link rel="stylesheet" href="/fx-index.css">
+</head>
+<body>
+<div class="container">
+<header class="nav"><a class="brand" href="/"><span class="logo">🚀</span><span>STRONAUT</span></a><a class="back" href="/">← Kembali</a></header>
+
+<section class="head">
+  <div class="pill">💎 STRONAUT Premium</div>
+  <h1>Upgrade server kamu ke <span class="grad">Premium.</span></h1>
+  <p>Pilih paket, masukkan ID server Discord, bayar via QRIS — premium aktif otomatis begitu pembayaran masuk.</p>
+</section>
+
+<div class="steps" id="steps">
+  <div class="step on" data-s="1"><b>1</b> Pilih paket</div>
+  <div class="step" data-s="2"><b>2</b> Server</div>
+  <div class="step" data-s="3"><b>3</b> Bayar</div>
+  <div class="step" data-s="4"><b>4</b> Selesai</div>
+</div>
+
+<main>
+  <div class="panel on" id="p1">
+    <div class="plans" id="plans"><div class="off">Memuat paket...</div></div>
+    <div class="feat" id="featBox" style="display:none"><h3>🎯 Fitur Premium (berlaku untuk seluruh member server)</h3><ul id="featList"></ul></div>
+    <details class="redeem" id="redeemBox">
+      <summary>🎟️ Punya kode redeem? Klaim di sini</summary>
+      <label for="rgid">ID Server Discord</label>
+      <input id="rgid" inputmode="numeric" autocomplete="off" placeholder="contoh: 123456789012345678" maxlength="22">
+      <label for="rcode">Kode redeem</label>
+      <input id="rcode" autocomplete="off" placeholder="STRO-AB12-CD34" maxlength="20" style="text-transform:uppercase">
+      <div class="msg" id="mr"></div>
+      <div class="row"><button class="btn primary" id="rgo">Klaim kode</button></div>
+    </details>
+  </div>
+
+  <div class="panel" id="p2"><div class="box">
+    <div class="sum"><div>Paket dipilih<b id="selName">—</b></div><div>Harga<b id="selPrice">—</b></div></div>
+    <label for="gid">ID Server Discord</label>
+    <input id="gid" inputmode="numeric" autocomplete="off" placeholder="contoh: 123456789012345678" maxlength="22">
+    <div class="hint">Discord → Pengaturan → Lanjutan → aktifkan <b>Developer Mode</b>, lalu klik kanan ikon server → <b>Salin ID Server</b>. Bot STRONAUT harus sudah ada di server tersebut.</div>
+    <div id="guildBox"></div>
+    <label for="contact">Kontak (opsional)</label>
+    <input id="contact" maxlength="100" placeholder="Username Discord / email untuk bantuan jika ada masalah">
+    <div class="msg" id="m2"></div>
+    <div class="row"><button class="btn ghost" id="back1">← Ganti paket</button><button class="btn primary" id="go" disabled>Lanjut bayar →</button></div>
+  </div></div>
+
+  <div class="panel" id="p3"><div class="box qrwrap">
+    <div class="sum" style="text-align:left"><div>Paket<b id="oPlan">—</b></div><div>Server<b id="oGuild">—</b></div><div>Harga<b id="oAmt">—</b></div><div>Biaya layanan<b id="oFee">—</b></div><div class="tot">Total bayar<b id="oTot">—</b></div></div>
+    <div class="qr"><img id="qrimg" alt="QRIS"></div>
+    <div class="hint" style="margin-top:14px">Scan dengan aplikasi e-wallet / m-banking apa pun yang mendukung <b>QRIS</b>.</div>
+    <div class="hint">Berlaku <span class="timer" id="timer">--:--</span></div>
+    <div class="wait"><span class="spin"></span> Menunggu pembayaran...</div>
+    <div class="msg" id="m3"></div>
+    <div class="row"><button class="btn ghost" id="cancel">Batalkan</button></div>
+  </div></div>
+
+  <div class="panel" id="p4"><div class="box"><div class="ok">
+    <div class="check">✓</div>
+    <h2>Pembayaran berhasil! 🎉</h2>
+    <p id="doneTxt">Premium sudah aktif.</p>
+    <div class="row" style="justify-content:center"><a class="btn primary" href="/">Kembali ke Beranda</a></div>
+  </div></div></div>
+</main>
+
+<footer><span>© <span id="year"></span> STRONAUT</span><span>Pembayaran diproses aman melalui Pakasir (QRIS)</span></footer>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+const rp=n=>'Rp '+Number(n).toLocaleString('id-ID');
+$('year').textContent=new Date().getFullYear();
+let plans=[],plan=null,guild=null,order=null,poll=null,tick=null;
+
+function show(n){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));$('p'+n).classList.add('on');
+  document.querySelectorAll('.step').forEach(s=>{const i=+s.dataset.s;s.classList.toggle('on',i===n);s.classList.toggle('done',i<n)});
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function msg(id,t,cls){const m=$(id);m.className='msg'+(t?' '+cls:'');m.textContent=t||''}
+async function j(url,opts){const r=await fetch(url,{headers:{'Content-Type':'application/json'},...opts});let d={};try{d=await r.json()}catch{}return{ok:r.ok,d}}
+
+// 1. paket
+function doneRedeem(r){
+  $('doneTxt').textContent=r.lifetime?`Kode berhasil diklaim! Server "${r.guild_name}" sekarang Premium Lifetime.`:`Kode berhasil diklaim! Premium untuk server "${r.guild_name}" aktif sampai ${new Date(r.expires_at).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'})}.`;
+  show(4);
+}
+$('rgid').addEventListener('input',()=>{const v=$('rgid').value.replace(/\D/g,'');if($('rgid').value!==v)$('rgid').value=v});
+$('rgo').onclick=async()=>{
+  const gid=$('rgid').value.trim(),code=$('rcode').value.trim();
+  if(!gid||!code){msg('mr','Isi ID server dan kode redeem.','err');return}
+  $('rgo').disabled=true;msg('mr');
+  const{ok,d}=await j('/api/premium/redeem',{method:'POST',body:JSON.stringify({guild_id:gid,code})});
+  $('rgo').disabled=false;
+  if(!ok||!d.ok){msg('mr',d.error||'Gagal mengklaim kode','err');return}
+  doneRedeem(d);
+};
+j('/api/premium/plans').then(({d})=>{
+  if(!d.enabled){$('plans').innerHTML='<div class="off" style="grid-column:1/-1">💤 Pembelian lewat website belum diaktifkan. Hubungi admin STRONAUT.</div>';return}
+  plans=d.plans;
+  if(d.features&&d.features.length){$('featList').innerHTML=d.features.map(f=>`<li>${f.commands.map(c=>`<code>${esc(c)}</code>`).join('')} ${esc(f.desc)}</li>`).join('');$('featBox').style.display='block'}
+  $('plans').innerHTML=plans.map(p=>`<button class="plan" data-id="${esc(p.id)}">${p.badge?`<span class="tag">${esc(p.badge)}</span>`:''}<h3>${esc(p.name)}</h3><div class="price">${esc(p.priceLabel)}</div><div class="per">untuk ${p.days} hari · ±${rp(Math.round(p.price/p.days))}/hari</div><ul><li>Aktif otomatis setelah bayar</li><li>Pembayaran via QRIS</li>${(p.perks||[]).map(x=>`<li>${esc(x)}</li>`).join('')}</ul></button>`).join('');
+  document.querySelectorAll('.plan').forEach(b=>b.onclick=()=>{plan=plans.find(p=>p.id===b.dataset.id);document.querySelectorAll('.plan').forEach(x=>x.classList.toggle('sel',x===b));$('selName').textContent=plan.name;$('selPrice').textContent=plan.priceLabel;setTimeout(()=>{show(2);$('gid').focus()},260)});
+}).catch(()=>$('plans').innerHTML='<div class="off" style="grid-column:1/-1">Gagal memuat paket.</div>');
+$('back1').onclick=()=>show(1);
+
+// 2. server
+let gt=null;
+$('gid').addEventListener('input',()=>{
+  guild=null;$('go').disabled=true;$('guildBox').innerHTML='';msg('m2');
+  const v=$('gid').value.replace(/\D/g,'');if($('gid').value!==v)$('gid').value=v;
+  clearTimeout(gt);if(v.length<15)return;
+  gt=setTimeout(async()=>{
+    const{ok,d}=await j('/api/premium/guild/'+v);
+    if(!ok||!d.ok){msg('m2',d.error||'Server tidak ditemukan','err');return}
+    guild=d;$('go').disabled=false;
+    $('guildBox').innerHTML=`<div class="guild">${d.icon?`<img src="${esc(d.icon)}" alt="">`:'<div class="av">🛰️</div>'}<div><b>${esc(d.name)}</b><small>${d.members!=null?d.members.toLocaleString('id-ID')+' member':''}</small></div></div>`;
+    if(d.lifetime)msg('m2','Server ini sudah Premium Lifetime. Pembelian baru tetap akan menambah masa aktif jika premium lifetime dicabut.','warn');else if(d.premiumUntil)msg('m2','Server ini sudah Premium sampai '+new Date(d.premiumUntil).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'})+'. Pembelian baru akan memperpanjang masa aktif.','warn');
+  },350);
+});
+$('go').onclick=async()=>{
+  $('go').disabled=true;msg('m2');
+  const{ok,d}=await j('/api/premium/checkout',{method:'POST',body:JSON.stringify({plan_id:plan.id,guild_id:guild.id,contact:$('contact').value})});
+  if(!ok||!d.ok){msg('m2',d.error||'Gagal membuat pembayaran','err');$('go').disabled=false;return}
+  order=d.order;
+  $('oPlan').textContent=order.plan_name;$('oGuild').textContent=order.guild_name;$('oAmt').textContent=rp(order.amount);$('oFee').textContent=rp(order.fee);$('oTot').textContent=rp(order.total);
+  if(d.qr){$('qrimg').src=d.qr}else{$('qrimg').alt='QR tidak tersedia';msg('m3','QR gagal dibuat. Hubungi admin.','err')}
+  show(3);startPoll();
+};
+
+// 3. bayar
+function startPoll(){
+  clearInterval(poll);clearInterval(tick);
+  const exp=order.expired_at?new Date(order.expired_at).getTime():Date.now()+15*60000;
+  tick=setInterval(()=>{const s=Math.max(0,Math.floor((exp-Date.now())/1000));$('timer').textContent=String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');if(!s){stop();msg('m3','QR kedaluwarsa. Silakan buat pembayaran baru.','err')}},500);
+  poll=setInterval(async()=>{
+    const{d}=await j('/api/premium/order/'+order.order_id);if(!d.ok)return;
+    if(d.order.status==='paid'){stop();done(d.order)}
+    else if(['expired','canceled'].includes(d.order.status)){stop();msg('m3',d.order.status==='expired'?'Pembayaran kedaluwarsa.':'Pembayaran dibatalkan.','err')}
+  },5000);
+}
+function stop(){clearInterval(poll);clearInterval(tick)}
+$('cancel').onclick=async()=>{stop();if(order)await j('/api/premium/order/'+order.order_id+'/cancel',{method:'POST'});order=null;show(1)};
+function done(o){
+  $('doneTxt').textContent=`Premium ${o.days} hari untuk server "${o.guild_name}" sudah aktif. Terima kasih sudah mendukung STRONAUT!`;
+  show(4);
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches)for(let i=0;i<70;i++){const c=document.createElement('i');c.className='confetti';c.style.left=Math.random()*100+'vw';c.style.background=['#7c6cff','#4cc9ff','#54e39b','#ffcf5c','#ff5ca8'][i%5];c.style.animationDuration=2.4+Math.random()*2.6+'s';c.style.animationDelay=Math.random()*.8+'s';document.body.appendChild(c);setTimeout(()=>c.remove(),6500)}
+}
+</script>
+<script src="/fx.js" defer></script>
+</body>
+</html>

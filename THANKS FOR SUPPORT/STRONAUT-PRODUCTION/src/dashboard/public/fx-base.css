@@ -1,0 +1,19 @@
+/* Shared motion layer */
+.fx-reveal{opacity:0;transform:translateY(22px) scale(.985);transition:opacity .7s cubic-bezier(.2,.7,.2,1) var(--fx-d,0ms),transform .7s cubic-bezier(.2,.7,.2,1) var(--fx-d,0ms)}
+.fx-reveal.fx-in{opacity:1;transform:none}
+.fx-glow{position:fixed;left:0;top:0;width:520px;height:520px;margin:-260px 0 0 -260px;border-radius:50%;pointer-events:none;z-index:-1;transform:translate(var(--gx,50vw),var(--gy,30vh));background:radial-gradient(circle,var(--fx-a,rgba(124,108,255,.13)),transparent 65%);transition:transform .25s ease-out;will-change:transform}
+.fx-orbs{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:-1}
+.fx-orbs i{position:absolute;border-radius:50%;filter:blur(90px);opacity:.28;animation:fxfloat 22s ease-in-out infinite}
+.fx-orbs i:nth-child(1){width:380px;height:380px;background:var(--fx-a,#7c6cff);left:-6%;top:8%}
+.fx-orbs i:nth-child(2){width:320px;height:320px;background:var(--fx-b,#4cc9ff);right:-5%;top:40%;animation-delay:-7s;animation-duration:27s}
+.fx-orbs i:nth-child(3){width:280px;height:280px;background:var(--fx-c,#ff5ca8);left:35%;bottom:-8%;animation-delay:-13s;opacity:.18}
+@keyframes fxfloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(60px,-50px) scale(1.12)}66%{transform:translate(-45px,40px) scale(.92)}}
+.fx-ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.35);transform:scale(0);animation:fxrip .65s ease-out forwards;pointer-events:none}
+@keyframes fxrip{to{transform:scale(2.6);opacity:0}}
+/* spotlight border that follows cursor */
+.card,.stat,.stat-card,.server-card,.command,.quick-action{position:relative}
+.card::after,.stat::after,.stat-card::after,.server-card::after,.command::after,.quick-action::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.09),transparent 65%)}
+.card:hover::after,.stat:hover::after,.stat-card:hover::after,.server-card:hover::after,.command:hover::after,.quick-action:hover::after{opacity:1}
+::selection{background:rgba(124,108,255,.45)}
+::-webkit-scrollbar{width:10px;height:10px}::-webkit-scrollbar-thumb{background:rgba(255,255,255,.14);border-radius:10px;border:2px solid transparent;background-clip:padding-box}::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,.28);background-clip:padding-box;border:2px solid transparent}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.fx-orbs,.fx-glow{display:none}}

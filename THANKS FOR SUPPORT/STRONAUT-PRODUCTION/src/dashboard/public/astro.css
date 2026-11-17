@@ -1,0 +1,30 @@
+/* Astronaut + stars + music player (index) */
+.stars{position:fixed;inset:0;pointer-events:none;z-index:-1}
+.stars i{position:absolute;width:2px;height:2px;border-radius:50%;background:#fff;opacity:.2;animation:tw 3s ease-in-out infinite}
+@keyframes tw{50%{opacity:1;transform:scale(1.8)}}
+.hero{overflow:visible}
+.astro{position:absolute;right:-70px;top:215px;width:185px;z-index:2;pointer-events:none;animation:afloat 7s ease-in-out infinite;filter:drop-shadow(0 30px 40px #6f5cff66)}
+.astro svg{width:100%;height:auto;overflow:visible;animation:aspin 14s ease-in-out infinite}
+@keyframes afloat{0%,100%{transform:translate(0,0)}25%{transform:translate(-14px,-22px)}50%{transform:translate(8px,-34px)}75%{transform:translate(16px,-12px)}}
+@keyframes aspin{0%,100%{transform:rotate(-9deg)}50%{transform:rotate(9deg)}}
+.astro .arm-l{transform-origin:78px 112px;animation:wave 2.4s ease-in-out infinite}
+@keyframes wave{0%,100%{transform:rotate(0)}50%{transform:rotate(-22deg)}}
+.astro .leg-l,.astro .leg-r{animation:kick 3.2s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 0}
+.astro .leg-r{animation-delay:-1.6s}
+@keyframes kick{50%{transform:rotate(9deg)}}
+.astro .tether{stroke-dasharray:6 6;animation:dash 1.5s linear infinite}@keyframes dash{to{stroke-dashoffset:-24}}
+.astro .glint{animation:glint 4s ease-in-out infinite}@keyframes glint{0%,70%,100%{opacity:.25}85%{opacity:.85}}
+.planet{position:absolute;left:-40px;top:215px;width:90px;height:90px;border-radius:50%;pointer-events:none;background:radial-gradient(circle at 30% 30%,#8f7bff,#3a2a8a 60%,#1b1450);box-shadow:0 0 50px #7c6cff55;animation:afloat 11s ease-in-out infinite reverse}
+.planet:after{content:"";position:absolute;left:-28%;right:-28%;top:42%;height:16%;border-radius:50%;border:2px solid #b7b0ff88;transform:rotate(-18deg)}
+@media(max-width:1060px){.astro{position:relative;right:auto;top:auto;margin:0 auto 6px;width:150px}.planet{display:none}}
+/* music */
+.music{position:fixed;left:18px;bottom:18px;z-index:80;display:flex;align-items:center;gap:12px;padding:9px 16px 9px 10px;border-radius:999px;background:rgba(17,22,42,.82);border:1px solid var(--line);backdrop-filter:blur(16px);box-shadow:0 14px 40px -10px #000,0 0 30px -10px #7c6cff;color:#fff;font:600 13px Inter,system-ui,sans-serif;animation:fxup .9s .6s both}
+.music button{width:38px;height:38px;border:0;border-radius:50%;cursor:pointer;color:#fff;font-size:15px;background:linear-gradient(135deg,var(--p),var(--p2));box-shadow:0 8px 22px -6px #7c6cff;transition:transform .2s}
+.music button:hover{transform:scale(1.1)}
+.music .eq{display:flex;align-items:flex-end;gap:2px;height:16px}
+.music .eq i{width:3px;background:linear-gradient(var(--p2),var(--p));border-radius:2px;height:4px;transition:height .2s}
+.music.on .eq i{animation:eq .9s ease-in-out infinite}.music.on .eq i:nth-child(2){animation-delay:-.3s}.music.on .eq i:nth-child(3){animation-delay:-.6s}.music.on .eq i:nth-child(4){animation-delay:-.15s}
+@keyframes eq{0%,100%{height:3px}50%{height:16px}}
+.music input{width:70px;accent-color:#7c6cff;cursor:pointer}
+.music small{color:var(--muted);font-weight:500;max-width:120px;line-height:1.25}
+@media(max-width:560px){.music input,.music small{display:none}.music{padding-right:10px}}

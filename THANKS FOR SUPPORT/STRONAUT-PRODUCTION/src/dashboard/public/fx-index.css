@@ -1,0 +1,31 @@
+/* index.html modern layer */
+:root{--fx-a:#7c6cff;--fx-b:#4cc9ff;--fx-c:#ff5ca8}
+.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(18px);background:linear-gradient(to bottom,rgba(7,9,20,.8),rgba(7,9,20,0));animation:fxdown .8s cubic-bezier(.2,.7,.2,1) both}
+@keyframes fxdown{from{opacity:0;transform:translateY(-24px)}}
+.logo{animation:fxbob 4s ease-in-out infinite}@keyframes fxbob{50%{transform:translateY(-4px) rotate(-6deg);box-shadow:0 16px 45px #6f5cff88}}
+.navlinks a{transition:.25s;position:relative}.navlinks a:not(.invite):not(.admin):after{content:"";position:absolute;left:13px;right:13px;bottom:6px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--p),var(--p2));transform:scaleX(0);transition:transform .3s}.navlinks a:not(.invite):not(.admin):hover:after{transform:scaleX(1)}
+.invite,.primary{background-size:200% 200%;animation:fxshift 6s ease infinite;transition:transform .25s,box-shadow .25s}
+.invite:hover,.primary:hover{transform:translateY(-3px);box-shadow:0 18px 50px #6f5cff77}
+.secondary{transition:.25s}.secondary:hover{transform:translateY(-3px);background:#ffffff16;border-color:#8b7dff66}
+@keyframes fxshift{50%{background-position:100% 50%}}
+.hero .pill,.hero h1,.hero p,.hero .actions{animation:fxup .9s cubic-bezier(.2,.7,.2,1) both}
+.hero h1{animation-delay:.12s}.hero p{animation-delay:.24s}.hero .actions{animation-delay:.36s}
+@keyframes fxup{from{opacity:0;transform:translateY(34px);filter:blur(8px)}}
+.pill{backdrop-filter:blur(10px);box-shadow:0 0 30px #7c6cff22}
+.dot{animation:fxping 1.8s ease-out infinite}@keyframes fxping{0%{box-shadow:0 0 0 0 #54e39baa}100%{box-shadow:0 0 0 12px #54e39b00}}
+.grad{background:linear-gradient(90deg,#fff,#aaa0ff,#6fdcff,#ff8bd0,#fff);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;animation:fxtext 8s linear infinite}@keyframes fxtext{to{background-position:300% 0}}
+.hero:before{content:"";position:absolute;left:50%;top:40px;width:720px;height:720px;margin-left:-360px;background:conic-gradient(from 0deg,#7c6cff22,transparent 30%,#4cc9ff22,transparent 60%,#ff5ca81a,transparent);border-radius:50%;filter:blur(70px);animation:fxspin 24s linear infinite;pointer-events:none;z-index:-1}
+@keyframes fxspin{to{transform:rotate(360deg)}}
+.stat,.card,.server-card,.command{transition:transform .35s cubic-bezier(.2,.7,.2,1),border-color .3s,box-shadow .35s,background .3s}
+.stat:hover,.card:hover,.server-card:hover{transform:translateY(-8px);border-color:#8278ff77;box-shadow:0 25px 60px -20px #6f5cff66}
+.stat b{background:linear-gradient(90deg,#fff,#b7b0ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.icon{display:inline-grid;place-items:center;width:52px;height:52px;border-radius:15px;background:linear-gradient(135deg,#7c6cff33,#4cc9ff22);border:1px solid #8b7dff44;transition:.4s}.card:hover .icon{transform:rotate(-8deg) scale(1.12);box-shadow:0 10px 30px #6f5cff55}
+.cmd{transition:.2s}.cmd:hover{background:#7c6cff33;border-color:#8b7dff88;transform:translateY(-2px)}
+.command{transition:.3s}.command:hover{transform:translateX(6px);border-color:#8b7dff55;background:#7c6cff10}
+.server-banner img{transition:transform .8s}.server-card:hover .server-banner img{transform:scale(1.1)}
+.server-card .online{text-shadow:0 0 14px var(--ok)}
+.sectionhead h2{background:linear-gradient(90deg,#fff,#b9b3ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.cta{position:relative;overflow:hidden;box-shadow:0 30px 80px -30px #6d5cff66}
+.cta:before{content:"";position:absolute;inset:-1px;background:linear-gradient(110deg,transparent 35%,#ffffff14 50%,transparent 65%);transform:translateX(-100%);animation:fxsheen 5s ease-in-out infinite}@keyframes fxsheen{60%,100%{transform:translateX(100%)}}
+footer{position:relative}
+.brand{color:var(--text);text-decoration:none}.brand span:last-child{background:linear-gradient(90deg,#fff,#b9b3ff);-webkit-background-clip:text;background-clip:text;color:transparent}
