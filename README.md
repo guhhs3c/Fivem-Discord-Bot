@@ -82,7 +82,7 @@ npm start
 | `QRIS_IMAGE_URL` | ❌ | URL gambar QRIS untuk donasi |
 | `DASHBOARD_PORT` | ❌ | Port dashboard web (default: `4000`) |
 | `DASHBOARD_USER` | ❌ | Username dashboard (default: `admin`) |
-| `DASHBOARD_PASS` | ❌ | Password dashboard (default: `stronaut2025`) |
+| `DASHBOARD_PASS` | ❌ | Password dashboard (default: `sBEBAS`) |
 | `SNIFOX_API_KEY` | ❌ | API key SnifoxAI untuk fallback AI `!ask` (kosongkan untuk nonaktifkan) |
 | `SNIFOX_BASE_URL` | ❌ | Base URL SnifoxAI Gateway (default: `https://core.snifoxai.com/v1`) |
 | `SNIFOX_MODEL` | ❌ | Model yang dipakai, cek https://snifoxai.com/models (default: `openai/gpt-4o-mini`) |
